@@ -8,9 +8,10 @@ def test_get_count_students():
     browser.get("https://psxt.ucoz.com/")
     # Поиск и проверка нужных элементов
     try:
-        need_link = browser.find_element(
-            By.LINK_TEXT, "ИНФОРМАЦИЯ ДЛЯ ПОСТУПАЮЩИХ"
-        )
+        # need_link = browser.find_element(
+        #     By.LINK_TEXT, "ИНФОРМАЦИЯ ДЛЯ ПОСТУПАЮЩИХ"
+        # )
+        need_link = browser.find_element(By.CSS_SELECTOR, "div.nabor2 p:nth-child(3) a:nth-child(1)")
         need_link.click()
         tables = browser.find_elements(By.CSS_SELECTOR, "table.MsoTableGrid")
         tb_element = tables[1].find_element(
