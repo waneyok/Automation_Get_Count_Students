@@ -12,10 +12,11 @@ def test_get_count_students():
             By.LINK_TEXT, "ИНФОРМАЦИЯ ДЛЯ ПОСТУПАЮЩИХ"
         )
         need_link.click()
-        tb_element = browser.find_element(
-            By.CSS_SELECTOR, "table.MsoTableGrid tr:nth-child(3) td:nth-child(3)"
+        tables = browser.find_elements(By.CSS_SELECTOR, "table.MsoTableGrid")
+        tb_element = tables[1].find_element(
+            By.CSS_SELECTOR, "tr:nth-child(3) td:nth-child(3)"
         )
-        print(tb_element)
+        print(f"Количество заявлений = {tb_element.text}")
     except Exception as e:
         print(f"Произошла ошибка при выполнении теста: {e}")
 def test_get_count_negative():
@@ -27,9 +28,12 @@ def test_get_count_negative():
             By.LINK_TEXT, "ИНФОРМАЦИЯ ДЛЯ ПОСТУПАЮЩИХ"
         )
         need_link.click()
-        tb_element = browser.find_element(
-            By.CSS_SELECTOR, "table.MsoTableGrid tr:nth-child(9) td:nth-child(3)"
+        tables = browser.find_elements(By.CSS_SELECTOR, "table.MsoTableGrid")
+        tb_element = tables[1].find_element(
+            By.CSS_SELECTOR, "tr:nth-child(3.0) td:nth-child(13)"
         )
-        print(tb_element)
+        print(f"Количество заявлений = {tb_element.text}")
     except Exception as e:
         print(f"Произошла ошибка при выполнении теста: {e}")
+test_get_count_students()
+test_get_count_negative()
