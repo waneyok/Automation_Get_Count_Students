@@ -16,7 +16,10 @@ def test_get_count_students():
         tb_element = tables[1].find_element(
             By.CSS_SELECTOR, "tr:nth-child(3) td:nth-child(3)"
         )
-        print(f"Количество заявлений = {tb_element.text}")
+        tb_spec_name = tables[1].find_element(
+            By.CSS_SELECTOR, "tr:nth-child(3) td:nth-child(1)"
+        )
+        print(f"Количество заявлений = {tb_element.text} по специальности '{tb_spec_name.text}'")
     except Exception as e:
         print(f"Произошла ошибка при выполнении теста: {e}")
 def test_get_count_negative():
@@ -32,8 +35,7 @@ def test_get_count_negative():
         tb_element = tables[1].find_element(
             By.CSS_SELECTOR, "tr:nth-child(3.0) td:nth-child(13)"
         )
-        print(f"Количество заявлений = {tb_element.text}")
+        print(f"Количество заявлений{tb_element.text}")
     except Exception as e:
         print(f"Произошла ошибка при выполнении теста: {e}")
 test_get_count_students()
-test_get_count_negative()
